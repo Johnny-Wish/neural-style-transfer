@@ -9,8 +9,12 @@ class ProjectionLayer(nn.Module):
     pass
 
 
+DEFAULT_VGG_MEAN = [0.485, 0.456, 0.406]
+DEFAULT_VGG_STD = [0.229, 0.224, 0.225]
+
+
 class VggProjection(ProjectionLayer):
-    def __init__(self, mean, std):
+    def __init__(self, mean=DEFAULT_VGG_MEAN, std=DEFAULT_VGG_STD):
         super(VggProjection, self).__init__()
         # reshape mean and std to (C, H, W)
         self.mean = torch.Tensor(mean).view(-1, 1, 1)
