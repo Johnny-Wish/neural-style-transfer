@@ -29,15 +29,16 @@ class ImageDumper:
         tool for dumping an image, before resizing it if necessary
         :param tensor: Tensor of shape (1, C, H, W)
         :param path: default path to dump the image
-        :param size:
+        :param size: size of the image, used for resizing
         """
         self.default_path = path
-        if size is None:
-            transformer = ToPILImage()
-        else:
+        transformer = Compose([
+            torch.squeeze,
+            ToPILImage(),
+        ])
+        if size is not None:
             transformer = Compose([
-                torch.squeeze,
-                ToPILImage(),
+                transformer,
                 Resize(size),
             ])
 
@@ -51,4 +52,3 @@ class ImageDumper:
             print("image not saved, please specify a path")
         else:
             self.image.save(path)
-
