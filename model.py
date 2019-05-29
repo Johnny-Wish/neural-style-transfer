@@ -70,20 +70,18 @@ class StyleNet:
 
     def _attempt_insert_content_loss(self):
         if self.layer_count in self.content_layer:
-            print("inserting content loss, id =", self.layer_count)
             self.content_layer.remove(self.layer_count)
             target_features = self._model(self.content_tensor).detach()
             layer = ContentLoss(target_features)
-            self._model.add_module('content_{}'.format(self.layer_count), layer)
+            self._model.add_module('content_loss_{}'.format(self.layer_count), layer)
             self._content_losses.append(layer)
 
     def _attempt_insert_style_loss(self):
         if self.layer_count in self.style_layer:
-            print("inserting style loss, id =", self.layer_count)
             self.style_layer.remove(self.layer_count)
             target_features = self._model(self.style_tensor).detach()
             layer = StyleLoss(target_features)
-            self._model.add_module('style_{}'.format(self.layer_count), layer)
+            self._model.add_module('style_loss_{}'.format(self.layer_count), layer)
             self._style_losses.append(layer)
 
     def _trim_extra_layers(self):
