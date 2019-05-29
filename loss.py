@@ -19,7 +19,8 @@ class TransparentLossLayer(nn.Module):
         raise NotImplementedError('_convert_features() not implemented')
 
     def forward(self, input_features):
-        self.loss = F.mse_loss(input_features, self.target)
+        input_tensor = self._convert_features(input_features)
+        self.loss = F.mse_loss(input_tensor, self.target)
         return input_features
 
 
