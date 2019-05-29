@@ -22,4 +22,5 @@ if __name__ == '__main__':
     for epoch_count in range(1, args.n_epochs + 1):
         print('starting epoch {}'.format(epoch_count))
         result = session.epoch()
-        ImageDumper(result, 'output/output_{}.jpg'.format(epoch_count)).dump()
+        dump_path = os.path.join(args.output, 'pastiche_{}.jpg'.format(epoch_count))
+        ImageDumper(result, dump_path).dump()
