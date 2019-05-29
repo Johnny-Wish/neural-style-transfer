@@ -4,11 +4,12 @@ from PIL import Image
 
 
 class ImageLoader:
-    def __init__(self, path, size=(256, 256)):
+    def __init__(self, path, size=(256, 256), device=None):
         """
         tool for loading an image from disk and storing it in a tensor
         :param path: path to load the image
         :param size: size of image's width and height, used for resizing
+        :param device: device to cast image tensor
         """
         if isinstance(size, int):
             size = (size, size)
@@ -19,7 +20,7 @@ class ImageLoader:
             ToTensor(),
         ])
         # dummy batch size == 1
-        self._tensor = transformer(img).unsqueeze(dim=0)  # type: torch.Tensor
+        self._tensor = transformer(img).unsqueeze(dim=0).to(device=device)  # type: torch.Tensor
 
     @property
     def tensor(self):
