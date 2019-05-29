@@ -1,3 +1,4 @@
+import os
 from torch.optim import Adam
 from torchvision.models.vgg import vgg16
 from image_utils import ImageLoader, ImageDumper
@@ -11,13 +12,29 @@ if __name__ == '__main__':
     args = CustomizedArgs(parser)
 
     reference_model = vgg16(pretrained=True).features
-    projection_layer = VggProjection()
-    style_tensor = ImageLoader(path=args.style_path).tensor
-    content_image = ImageLoader(path=args.content_path)
+    projection_layer = VggProjection(device=args.device)
+    style_tensor = ImageLoader(path=args.style_path, size=args.image_size, device=args.device).tensor
+    content_image = ImageLoader(path=args.content_path, size=args.image_size, device=args.device)
     content_tensor = content_image.tensor
-    styler = StyleNet(reference_model, projection_layer, content_tensor, style_tensor, [4], [1, 2, 3, 4])
+    styler = StyleNet(
+        reference=reference_model,
+        projection_layer=projection_layer,
+        content=content_tensor,
+        style=style_tensor,
+        content_layer=[4],
+        style_layer=[1, 2, 3, 4],
+        device=args.device,
+    )
     styler.build_model()
-    session = Session(styler, Adam, alpha=args.alpha, n_steps=args.steps_per_epoch)
+    print(styler.model)
+
+    session = Session(
+        styler=styler,
+        optimizer_class=Adam,
+        alpha=args.alpha,
+        n_steps=args.steps_per_epoch,
+        from_scratch=args.from_scratch,
+    )
 
     for epoch_count in range(1, args.n_epochs + 1):
         print('starting epoch {}'.format(epoch_count))
