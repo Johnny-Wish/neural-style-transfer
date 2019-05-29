@@ -1,3 +1,4 @@
+import torch
 from argparse import ArgumentParser
 
 
@@ -44,8 +45,8 @@ class CustomizedArgs:
         return self.args.steps
 
     @property
-    def cuda(self):
-        return self.args.cuda
+    def device(self):
+        return torch.device("cuda" if torch.cuda.is_available() and self.args.cuda else "cpu")
 
     @property
     def n_epochs(self):
