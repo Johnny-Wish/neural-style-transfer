@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
 from projection import ProjectionLayer
-from loss import ContentLoss, StyleLoss
+from loss import ContentLoss, StyleLoss, TransparentLossLayer
 
 
 class StyleNet:
-    def __init__(self, reference, projection_layer, content, style, content_layer, style_layer):
+    def __init__(self, reference, projection_layer, content, style, content_layer, style_layer, device=None):
         """
         a style network with properties `model`, `content_loss`, and `style_loss`
         :param reference: nn.Module, a reference CNN model used for feature extraction
@@ -86,7 +86,7 @@ class StyleNet:
 
     def _trim_extra_layers(self):
         for last in range(len(self._model) - 1, -1, -1):
-            if isinstance(self._model[last], (StyleLoss, ContentLoss)):
+            if isinstance(self._model[last], TransparentLossLayer):
                 break
 
         self._model = self._model[: last + 1]
