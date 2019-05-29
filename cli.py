@@ -11,7 +11,7 @@ class CustomizedParser(ArgumentParser):
         super(CustomizedParser, self).__init__(*args, **kwargs)
         self.add_argument("--content", required=True, help="path to content image")
         self.add_argument("--style", required=True, help="path to style image")
-        self.add_argument("--size", default=256, help="size of images, default=256")
+        self.add_argument("--size", default=256, type=int, help="size of images, default=256")
         self.add_argument("--steps", default=50, type=int, help="steps per epoch, default=50")
         self.add_argument("--cuda", action="store_true", help="enable CUDA acceleration if possible")
         self.add_argument("--epochs", default=6, type=int, help="number of epochs in total, default=6")
