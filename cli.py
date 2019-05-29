@@ -18,6 +18,9 @@ class CustomizedParser(ArgumentParser):
         self.add_argument("--epochs", default=6, type=int, help="number of epochs in total, default=6")
         self.add_argument("--alpha", default=1e6, type=float, help="relative weight of style loss to content "
                                                                    "loss, default=1e6")
+        self.add_argument("--scratch", action="store_true", help="if set, train the model from scratch instead of "
+                                                                 "content image")
+        self.add_argument("--output", default="./output", help="dir to store output images")
 
 
 class CustomizedArgs:
@@ -55,3 +58,11 @@ class CustomizedArgs:
     @property
     def alpha(self):
         return self.args.alpha
+
+    @property
+    def from_scratch(self):
+        return self.args.scratch
+
+    @property
+    def output(self):
+        return self.args.output
