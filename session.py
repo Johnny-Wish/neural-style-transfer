@@ -14,7 +14,8 @@ class Session:
         """
         self.styler = styler
         if from_scratch:
-            self.result = torch.rand(*self.styler.style_tensor.shape).requires_grad_(True)
+            device = self.styler.content_tensor.device
+            self._pastiche = torch.rand(*self.styler.style_tensor.shape, device=device).requires_grad_(True)
         else:
             self._pastiche = self.styler.content_tensor.clone().requires_grad_(True)
         self.optimizer = optimizer_class([self._pastiche])
