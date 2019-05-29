@@ -10,6 +10,8 @@ class ImageLoader:
         :param path: path to load the image
         :param size: size of image's width and height, used for resizing
         """
+        if isinstance(size, int):
+            size = (size, size)
         img = Image.open(path)
         self._original_size = img.size
         transformer = Compose([
