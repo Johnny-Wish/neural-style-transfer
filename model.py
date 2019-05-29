@@ -14,8 +14,10 @@ class StyleNet:
         :param style: torch.Tensor, tensor for style image
         :param content_layer: list[int], indices (starting from 1) where transparent ContentLoss will be inserted
         :param style_layer: list[int], indices (starting from 1) where transparent StyleLoss will be inserted
+        :param device: torch.device, used for casting model and tensors
         """
-        self.reference = reference  # type: nn.Module
+        self.device = device
+        self.reference = reference.to(device=self.device)  # type: nn.Module
         self.projection = projection_layer  # type: ProjectionLayer
         self.content_tensor = content  # type: torch.Tensor
         self.style_tensor = style  # type: torch.Tensor
@@ -45,7 +47,7 @@ class StyleNet:
         return torch.stack([l.loss for l in self._style_losses]).sum()
 
     def _initialize_model(self):
-        self._model = nn.Sequential()
+        self._model = nn.Sequential().to(device=self.device)
         self._model.add_module('projection', self.projection)
         self.layer_count = 0
         self._content_losses = []
@@ -57,7 +59,7 @@ class StyleNet:
             self._adapt_named_layer(layer)
             self._attempt_insert_content_loss()
             self._attempt_insert_style_loss()
-
+        # trim trailing layers after the last TransparentLossLayer
         self._trim_extra_layers()
 
     def _adapt_named_layer(self, layer):
