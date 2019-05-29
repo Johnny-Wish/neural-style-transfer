@@ -11,6 +11,7 @@ class ImageLoader:
         :param size: size of image's width and height, used for resizing
         """
         img = Image.open(path)
+        self._original_size = img.size
         transformer = Compose([
             Resize(size),
             ToTensor(),
@@ -21,6 +22,10 @@ class ImageLoader:
     @property
     def tensor(self):
         return self._tensor
+
+    @property
+    def original_size(self):
+        return self._original_size
 
 
 class ImageDumper:
