@@ -18,8 +18,11 @@ class CustomizedParser(ArgumentParser):
         self.add_argument("--epochs", default=6, type=int, help="number of epochs in total, default=6")
         self.add_argument("--alpha", default=1e6, type=float, help="relative weight of style loss to content "
                                                                    "loss, default=1e6")
-        self.add_argument("--scratch", action="store_true", help="if set, train the model from scratch instead of "
-                                                                 "content image")
+        self.add_argument("--start_from", default="content", help="if 'content', initialize pastiche as content tensor"
+                                                                  "if 'style', initialize pastiche as style tensor"
+                                                                  "if 'scratch', initialize pastiche as random noise"
+                                                                  "if others, construed as path to initial pastiche "
+                                                                  "images")
         self.add_argument("--output", default="./output", help="dir to store output images")
         self.add_argument("--preserve_size", action="store_true", help="if set, rescale pastiche to its original size "
                                                                        "when dumping")
@@ -62,8 +65,8 @@ class CustomizedArgs:
         return self._args.alpha
 
     @property
-    def from_scratch(self):
-        return self._args.scratch
+    def start_from(self):
+        return self._args.start_from
 
     @property
     def output(self):
