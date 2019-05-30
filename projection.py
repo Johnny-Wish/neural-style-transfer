@@ -20,6 +20,6 @@ class VggProjection(ProjectionLayer):
         self.mean = torch.Tensor(mean).view(-1, 1, 1).to(device=device)
         self.std = torch.Tensor(std).view(-1, 1, 1).to(device=device)
 
-    def forward(self, input):
+    def forward(self, input: torch.Tensor):
         # broadcasting mean and std to (N, C, H, W)
         return (input - self.mean) / self.std
