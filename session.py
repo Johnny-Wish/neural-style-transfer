@@ -1,5 +1,6 @@
 import torch
 from model import StyleNet
+from global_utils import flush_json_metrics
 
 
 class Session:
@@ -13,6 +14,7 @@ class Session:
         :param from_scratch: if True, pastiche is initialized to random noise; a clone of content image otherwise
         """
         self.styler = styler
+        self.metrics = {}
         if from_scratch:
             device = self.styler.content_tensor.device
             self._pastiche = torch.rand(*self.styler.style_tensor.shape, device=device).requires_grad_(True)
@@ -26,6 +28,7 @@ class Session:
     def epoch(self):
         for _ in range(self.steps_per_epoch):
             self.step()
+        flush_json_metrics(self.metrics)
         return self._pastiche
 
     def step(self):
@@ -36,8 +39,8 @@ class Session:
         # fetch and weight both losses
         style_loss = self.styler.style_loss
         content_loss = self.styler.content_loss
-        print('style_loss = {}, content_loss = {}'.format(style_loss, content_loss))
         total_loss = content_loss + style_loss * self.alpha
+        self.metrics = {'style_loss': style_loss, 'content_loss': content_loss, 'total_weighted_loss': total_loss}
         # backprop and do an optimization step
         total_loss.backward()
         self.optimizer.step(closure=None)
