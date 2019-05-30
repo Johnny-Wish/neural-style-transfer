@@ -13,7 +13,7 @@ class ImageLoader:
         """
         if isinstance(size, int):
             size = (size, size)
-        img = Image.open(path)
+        img = Image.open(path).convert("RGB")
         self._original_size = img.size
         transformer = Compose([
             Resize(size),
