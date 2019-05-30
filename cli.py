@@ -29,40 +29,40 @@ class CustomizedArgs:
         wrapper for parsed arguments, used for reliable IDE hints
         :param parser: parser of command line arguments
         """
-        self.args = parser.parse_args()
+        self._args = parser.parse_args()
 
     @property
     def content_path(self):
-        return self.args.content
+        return self._args.content
 
     @property
     def style_path(self):
-        return self.args.style
+        return self._args.style
 
     @property
     def image_size(self):
-        return self.args.size
+        return self._args.size
 
     @property
     def steps_per_epoch(self):
-        return self.args.steps
+        return self._args.steps
 
     @property
     def device(self):
-        return torch.device("cuda" if torch.cuda.is_available() and self.args.cuda else "cpu")
+        return torch.device("cuda" if torch.cuda.is_available() and self._args.cuda else "cpu")
 
     @property
     def n_epochs(self):
-        return self.args.epochs
+        return self._args.epochs
 
     @property
     def alpha(self):
-        return self.args.alpha
+        return self._args.alpha
 
     @property
     def from_scratch(self):
-        return self.args.scratch
+        return self._args.scratch
 
     @property
     def output(self):
-        return self.args.output
+        return self._args.output
