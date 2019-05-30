@@ -28,7 +28,7 @@ class Session:
     def epoch(self):
         for _ in range(self.steps_per_epoch):
             self.step()
-        flush_json_metrics(self.metrics)
+        flush_json_metrics(self.metrics, step=self._global_step)
         return self._pastiche
 
     def step(self):
