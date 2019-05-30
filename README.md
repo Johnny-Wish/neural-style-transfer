@@ -19,6 +19,7 @@ Image generated in [this experiment](https://www.floydhub.com/wish1104/projects/
 - torch (PyTorch) 1.0.1 or later
 - torchvision 0.2.1 or later
 - pillow 5.0.0 or later
+
 __GPU device with CUDA acceleration is strongly recommended__
 
 ## Usage
