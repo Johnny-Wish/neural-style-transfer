@@ -16,6 +16,10 @@ if __name__ == '__main__':
     style_tensor = ImageLoader(path=args.style_path, size=args.image_size, device=args.device).tensor
     content_image = ImageLoader(path=args.content_path, size=args.image_size, device=args.device)
     content_tensor = content_image.tensor
+    if args.start_from.lower in ['content', 'style', 'scratch']:
+        start_from = args.start_from
+    else:
+        start_from = ImageLoader(path=args.start_from, size=args.image_size, device=args.device).tensor
     styler = StyleNet(
         reference=reference_model,
         projection_layer=projection_layer,
@@ -33,7 +37,7 @@ if __name__ == '__main__':
         optimizer_class=Adam,
         alpha=args.alpha,
         n_steps=args.steps_per_epoch,
-        from_scratch=args.from_scratch,
+        start_from=start_from,
     )
 
     for epoch_count in range(1, args.n_epochs + 1):
