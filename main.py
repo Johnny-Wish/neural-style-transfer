@@ -40,4 +40,5 @@ if __name__ == '__main__':
         print('starting epoch {}'.format(epoch_count))
         result = session.epoch()
         dump_path = os.path.join(args.output, 'pastiche_{}.jpg'.format(epoch_count))
-        ImageDumper(result, dump_path).dump()
+        size = content_image.original_size if args.preserve_size else None
+        ImageDumper(result, path=dump_path, size=size).dump()

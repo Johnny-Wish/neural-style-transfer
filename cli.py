@@ -21,6 +21,8 @@ class CustomizedParser(ArgumentParser):
         self.add_argument("--scratch", action="store_true", help="if set, train the model from scratch instead of "
                                                                  "content image")
         self.add_argument("--output", default="./output", help="dir to store output images")
+        self.add_argument("--preserve_size", action="store_true", help="if set, rescale pastiche to its original size "
+                                                                       "when dumping")
 
 
 class CustomizedArgs:
@@ -66,3 +68,7 @@ class CustomizedArgs:
     @property
     def output(self):
         return self._args.output
+
+    @property
+    def preserve_size(self):
+        return self._args.preserve_size
