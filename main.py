@@ -16,8 +16,8 @@ if __name__ == '__main__':
     style_tensor = ImageLoader(path=args.style_path, size=args.image_size, device=args.device).tensor
     content_image = ImageLoader(path=args.content_path, size=args.image_size, device=args.device)
     content_tensor = content_image.tensor
-    if args.start_from.lower in ['content', 'style', 'scratch']:
-        start_from = args.start_from
+    if args.start_from.lower() in ['content', 'style', 'scratch']:
+        start_from = args.start_from.lower()
     else:
         start_from = ImageLoader(path=args.start_from, size=args.image_size, device=args.device).tensor
     styler = StyleNet(
