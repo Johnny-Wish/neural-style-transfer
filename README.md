@@ -14,6 +14,16 @@ Image generated in [this experiment](https://www.floydhub.com/wish1104/projects/
 | <img src="images/lake.jpg" alt="content" width="256" height="256"/> | <img src="images/starry-night.jpg" alt="style" width="256" height="256"/> |
 <img src="resources/pastiche-lake-10k-iters.jpg" alt="pastiche" width="512" height="512"/>
 
+### Teaching Building in Campus A of Chongqing University
+
+Image generated in [this experiment](https://www.floydhub.com/wish1104/projects/style-transfer/39/), pastiche output can be found [here](https://www.floydhub.com/wish1104/projects/style-transfer/39/output/pastiche_100.jpg).
+
+|                        Content Image                         |                         Style Image                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="images/teaching-building.jpg" alt="content" width="256" height="256"/> | <img src="images/impression.jpg" alt="style" width="256" height="256"/> |
+<img src="resources/pastiche-teaching-building-10k-iters.jpg" alt="pastiche" width="512" height="512"/>
+
+
 ## Dependencies
 - Python interpreter 3.6 or later
 - torch (PyTorch) 1.0.1 or later
