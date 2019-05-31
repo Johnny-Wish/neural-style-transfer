@@ -5,23 +5,17 @@ Experiment codes, environments, logs, metric curves, inputs, and ouputs can be f
 
 ## Experimental Result
 
-### Lake in Huxi campus of Chongqing University
+|                        Content Image                         |                         Style Image                          | Pastiche 10k Iters                                           |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+| <img src="images/lake.jpg" alt="content" width="256" height="256"/> | <img src="images/starry-night.jpg" alt="style" width="256" height="256"/> | <img src="resources/pastiche-lake-10k-iters.jpg" alt="pastiche" width="256" height="256"/> |
+| <img src="images/teaching-building.jpg" alt="content" width="256" height="256"/> | <img src="images/impression.jpg" alt="style" width="256" height="256"/> | <img src="resources/pastiche-teaching-building-10k-iters.jpg" alt="pastiche" width="256" height="256"/> |
+### Lake in Huxi campus of Chongqing University (Row 1)
 
 Image generated in [this experiment](https://www.floydhub.com/wish1104/projects/style-transfer/35/), pastiche output can be found [here](https://www.floydhub.com/wish1104/projects/style-transfer/35/output/pastiche_100.jpg).
 
-|                        Content Image                         |                         Style Image                          |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="images/lake.jpg" alt="content" width="256" height="256"/> | <img src="images/starry-night.jpg" alt="style" width="256" height="256"/> |
-<img src="resources/pastiche-lake-10k-iters.jpg" alt="pastiche" width="512" height="512"/>
-
-### Teaching Building in Campus A of Chongqing University
+### Teaching Building in Campus A of Chongqing University (Row 2)
 
 Image generated in [this experiment](https://www.floydhub.com/wish1104/projects/style-transfer/39/), pastiche output can be found [here](https://www.floydhub.com/wish1104/projects/style-transfer/39/output/pastiche_100.jpg).
-
-|                        Content Image                         |                         Style Image                          |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src="images/teaching-building.jpg" alt="content" width="256" height="256"/> | <img src="images/impression.jpg" alt="style" width="256" height="256"/> |
-<img src="resources/pastiche-teaching-building-10k-iters.jpg" alt="pastiche" width="512" height="512"/>
 
 
 ## Dependencies
