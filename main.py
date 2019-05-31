@@ -5,11 +5,11 @@ from image_utils import ImageLoader, ImageDumper
 from model import StyleNet
 from session import Session
 from projection import VggProjection
-from cli import CustomizedArgs, CustomizedParser
+from cli import CLIArgs, CLIParser
 
 if __name__ == '__main__':
-    parser = CustomizedParser()
-    args = CustomizedArgs(parser)
+    parser = CLIParser()
+    args = CLIArgs(parser)
 
     reference_model = vgg16(pretrained=True).features
     projection_layer = VggProjection(device=args.device)

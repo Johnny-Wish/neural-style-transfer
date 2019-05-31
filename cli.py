@@ -2,14 +2,14 @@ import torch
 from argparse import ArgumentParser
 
 
-class CustomizedParser(ArgumentParser):
+class CLIParser(ArgumentParser):
     def __init__(self, *args, **kwargs):
         """
         customized parser for command line arguments
         :param args: see argparse.ArgumentParser.__init__()
         :param kwargs: see argparse.ArgumentParser.__init__()
         """
-        super(CustomizedParser, self).__init__(*args, **kwargs)
+        super(CLIParser, self).__init__(*args, **kwargs)
         self.add_argument("--content", required=True, help="path to content image")
         self.add_argument("--style", required=True, help="path to style image")
         self.add_argument("--size", default=256, type=int, help="size of images, default=256")
@@ -28,8 +28,8 @@ class CustomizedParser(ArgumentParser):
                                                                        "when dumping")
 
 
-class CustomizedArgs:
-    def __init__(self, parser: CustomizedParser):
+class CLIArgs:
+    def __init__(self, parser: CLIParser):
         """
         wrapper for parsed arguments, used for reliable IDE hints
         :param parser: parser of command line arguments
