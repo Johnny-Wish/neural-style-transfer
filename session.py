@@ -6,7 +6,7 @@ from global_utils import flush_json_metrics
 class Session:
     def __init__(self, styler: StyleNet, optimizer_class, alpha=1e6, n_steps=300, start_from="content"):
         """
-        a session than returns pastiche each epoch (and each step)
+        a session that returns pastiche at each epoch (and each step)
         :param styler: a StyleNet with specified content and style
         :param optimizer_class: a subclass of torch.optim.optimizer.Optimizer, whose constructor will be used
         :param alpha: relative weight of style loss to content loss
